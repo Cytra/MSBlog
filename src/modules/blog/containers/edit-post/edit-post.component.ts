@@ -16,8 +16,8 @@ export class EditPostComponent implements OnInit {
 
     constructor(private route: ActivatedRoute, private blogService: BlogService) {}
     ngOnInit() {
-        this.post$ = this.route.paramMap.pipe(
-            switchMap((params: ParamMap) => this.blogService.getPost$(params.get('post') as string))
-        );
+        // this.post$ = this.route.paramMap.pipe(
+        //     switchMap((params: ParamMap) => this.blogService.getPost$(params.get('post') as string))
+        // );
     }
 }
