@@ -1,5 +1,8 @@
 <sb-layout-blog *ngIf="(post$ | async) as post;"
-    ><sb-clean-blog-header [backgroundImage]="post.payload.backgroundImage" [heading]="post.payload.heading" [subHeading]="post.payload.subHeading" [meta]="pst.meta"></sb-clean-blog-header>
+    >
+    <sb-clean-blog-header [backgroundImage]="post.payload.backgroundImage" [heading]="post.payload.heading" [subHeading]="post.payload.subHeading" [meta]="post.payload.meta">
+
+    </sb-clean-blog-header>
     <article>
         <div class="container">
             <div class="row">
