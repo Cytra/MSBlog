@@ -41,8 +41,7 @@ export class PostFormComponent implements OnInit {
         if (this.newPostForm.status === 'VALID') {
             if (!this.post) {
                 this.blogService
-                    .createPost$(this.newPostForm.value)
-                    .subscribe(response => console.log(response));
+                    .createPost$(this.newPostForm.value);
             } else {
                 this.blogService
                     .updatePost$(this.post, this.newPostForm.value)
@@ -58,9 +57,7 @@ export class PostFormComponent implements OnInit {
     }
 
     deletePost() {
-        this.blogService
-            .deletePost$((this.post as Post).id)
-            .subscribe(response => console.log(response));
+
     }
 
     open(content: TemplateRef<unknown>, modalOptions: NgbModalOptions = {}) {

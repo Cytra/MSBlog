@@ -15,11 +15,11 @@ import { PostComponent } from './post.component';
 
 @Component({
     template: `
-        <sb-post [someInput]="someInput" (someFunction)="someFunction($event)"></sb-post>
+        <sb-post [PostId]="PostId" (someFunction)="someFunction($event)"></sb-post>
     `,
 })
 class TestHostComponent {
-    // someInput = 1;
+    PostId = "8NVpUyM4QmQcb3lVGMVj";
     // someFunction(event: Event) {}
 }
 

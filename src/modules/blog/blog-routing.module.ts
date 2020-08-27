@@ -31,7 +31,6 @@ export const ROUTES: Routes = [
     },
     {
         path: ':post',
-        canActivate: [blogGuards.PostGuard],
         component: blogContainers.PostComponent,
     },
 ];

@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuthUtilsService } from '@modules/auth/services';
 import { Post } from '@modules/blog/models';
 import { BlogService } from '@modules/blog/services';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
@@ -13,12 +13,19 @@ import { switchMap, tap } from 'rxjs/operators';
     styleUrls: ['post.component.scss'],
 })
 export class PostComponent implements OnInit, OnDestroy {
+    //@Input() PostId! : string ;
     static id = 'PostComponent';
 
     subscription: Subscription = new Subscription();
     isLoggedIn = false;
-    post$!: Observable<Post | null>;
+    post$!: Observable<Post | undefined>;
     post!: string;
+
+    pst: Post = {
+        heading : "header",
+        subHeading: "sub",
+        backgroundImage : "https://source.unsplash.com/WLUHO9A_xik/1600x900"
+    }
 
     constructor(
         private route: ActivatedRoute,
@@ -28,15 +35,12 @@ export class PostComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        this.post$ = this.route.paramMap.pipe(
-            tap((params: ParamMap) => (this.post = params.get('post') as string)),
-            switchMap((params: ParamMap) => this.blogService.getPost$(params.get('post') as string))
-        );
-        this.subscription.add(
-            this.authUtilsService.isLoggedIn$().subscribe(isLoggedIn => {
-                this.isLoggedIn = isLoggedIn;
-            })
-        );
+        let id = this.route.snapshot.paramMap.get('post');
+        console.log(id);
+        // this.post$ = of(this.pst)
+        if(id !== null ){
+            this.post$ = this.blogService.getPost$(id);
+        } 
     }
 
     ngOnDestroy() {
