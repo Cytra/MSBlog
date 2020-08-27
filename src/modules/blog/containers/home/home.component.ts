@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     ) {}
     ngOnInit() {
         this.postsObservable = this.blogService.getPosts$()
-        this.blogService.getPosts$()
-        .subscribe(posts => console.log(posts))
+        // this.blogService.getPosts$()
+        // .subscribe(posts => console.log(posts))
 
         //     )
         //     // posts.map(a => {

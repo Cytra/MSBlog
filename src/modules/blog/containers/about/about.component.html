@@ -1,1 +1,15 @@
-<sb-layout-blog><sb-clean-blog-header backgroundImage='url("assets/img/about-bg.jpg")' heading="About Me" subHeading="This is what I do" [siteHeading]="true"></sb-clean-blog-header></sb-layout-blog>
+<sb-layout-blog>
+    <sb-clean-blog-header backgroundImage='url("assets/img/about-bg.jpg")' heading="About Me" subHeading="This is what I do" [siteHeading]="true">
+    </sb-clean-blog-header>
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <markdown ngPreserveWhitespaces>
+                        I'm just a developer that wants to become better
+                    </markdown>
+                </div>
+            </div>
+        </div>
+    </article>
+</sb-layout-blog>

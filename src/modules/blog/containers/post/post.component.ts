@@ -21,11 +21,12 @@ export class PostComponent implements OnInit, OnDestroy {
     post$!: Observable<Post | undefined>;
     post!: string;
 
-    pst: Post = {
+    pst: Observable<Post> = of({
         heading : "header",
         subHeading: "sub",
-        backgroundImage : "https://source.unsplash.com/WLUHO9A_xik/1600x900"
-    }
+        backgroundImage : "https://source.unsplash.com/WLUHO9A_xik/1600x900",
+        body : "body"
+    })
 
     constructor(
         private route: ActivatedRoute,
@@ -36,11 +37,11 @@ export class PostComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         let id = this.route.snapshot.paramMap.get('post');
-        console.log(id);
-        // this.post$ = of(this.pst)
         if(id !== null ){
             this.post$ = this.blogService.getPost$(id);
+            this.blogService.getPost$(id).subscribe(post => console.log(post))
         } 
+        
     }
 
     ngOnDestroy() {
