@@ -5,6 +5,7 @@ import { Post } from '@modules/blog/models';
 import { BlogService } from '@modules/blog/services';
 import { Observable, Subscription, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
     selector: 'sb-post',
@@ -14,8 +15,8 @@ import { switchMap, tap } from 'rxjs/operators';
 })
 export class PostComponent implements OnInit, OnDestroy {
     //@Input() PostId! : string ;
-    static id = 'PostComponent';
-
+    //static id = 'PostComponent';
+    id: string | null = null;
     subscription: Subscription = new Subscription();
     isLoggedIn = false;
     post$!: Observable<Post | undefined>;
@@ -32,14 +33,15 @@ export class PostComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private router: Router,
         private blogService: BlogService,
-        private authUtilsService: AuthUtilsService
+        private authUtilsService: AuthUtilsService,
+        public afAuth: AngularFireAuth
     ) {}
 
     ngOnInit() {
-        let id = this.route.snapshot.paramMap.get('post');
-        if(id !== null ){
-            this.post$ = this.blogService.getPost$(id);
-            this.blogService.getPost$(id).subscribe(post => console.log(post))
+        this.id = this.route.snapshot.paramMap.get('post');
+        if(this.id !== null ){
+            this.post$ = this.blogService.getPost$(this.id);
+            //this.blogService.getPost$(this.id).subscribe(post => console.log(post))
         } 
         
     }
@@ -49,6 +51,6 @@ export class PostComponent implements OnInit, OnDestroy {
     }
 
     editPost() {
-        this.router.navigateByUrl(`/edit/${this.post}`);
+        this.router.navigateByUrl(`/edit/${this.id}`);
     }
 }

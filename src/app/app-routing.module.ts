@@ -15,7 +15,7 @@ const routes: Routes = [
             import('modules/blog/blog-routing.module').then(m => m.BlogRoutingModule),
     },
     {
-        path: 'auth',
+        path: 'admin',
         loadChildren: () =>
             import('modules/auth/auth-routing.module').then(m => m.AuthRoutingModule),
     },

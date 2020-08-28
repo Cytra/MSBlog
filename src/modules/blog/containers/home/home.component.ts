@@ -9,8 +9,6 @@ import { AuthUtilsService } from '@modules/auth/services';
 import { Post } from '@modules/blog/models';
 import { BlogService } from '@modules/blog/services';
 import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-
 @Component({
     selector: 'sb-home',
     changeDetection: ChangeDetectionStrategy.OnPush,

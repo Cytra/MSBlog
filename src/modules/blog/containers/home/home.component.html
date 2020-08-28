@@ -2,7 +2,8 @@
 
 <sb-layout-blog>
     <sb-clean-blog-header backgroundImage='url("assets/img/home-bg.jpg")' heading="Martynas Samuilovas Blog" 
-    subHeading="Blog about my journey to becoming a senior developer" [siteHeading]="true"></sb-clean-blog-header><sb-demo-info ></sb-demo-info
+    subHeading="Blog about my journey to becoming a senior developer" [siteHeading]="true"></sb-clean-blog-header>
+    <!-- <sb-demo-info *ngIf="!(afAuth.authState | async)"></sb-demo-info -->
     ><ng-container *ngIf="postsObservable | async as posts"
         ><div class="container">
             <div class="row">

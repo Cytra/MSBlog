@@ -6,7 +6,8 @@
     <article>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto"><markdown ngPreserveWhitespaces>{{post.payload.body}}</markdown><button class="btn btn-primary" type="button" (click)="editPost()">Edit Post</button></div>
+                <div class="col-lg-8 col-md-10 mx-auto"><markdown ngPreserveWhitespaces>{{post.payload.body}}</markdown>
+                    <button *ngIf="(afAuth.authState | async)" class="btn btn-primary" type="button" (click)="editPost()">Edit Post</button></div>
             </div>
         </div>
     </article></sb-layout-blog

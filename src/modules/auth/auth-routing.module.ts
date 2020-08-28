@@ -16,16 +16,13 @@ import * as authGuards from './guards';
 export const ROUTES: Routes = [
     {
         path: 'login',
-        canActivate: [],
         component: authContainers.LoginComponent,
-        data: {
-            title: 'Pages Login - SB Clean Blog Angular',
-        } as SBRouteData,
-    },
+    }
 ];
 
 @NgModule({
     imports: [AuthModule, RouterModule.forChild(ROUTES)],
     exports: [RouterModule],
 })
+
 export class AuthRoutingModule {}

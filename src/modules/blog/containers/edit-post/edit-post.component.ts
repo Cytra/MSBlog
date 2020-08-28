@@ -12,10 +12,15 @@ import { switchMap } from 'rxjs/operators';
     styleUrls: ['edit-post.component.scss'],
 })
 export class EditPostComponent implements OnInit {
-    post$!: Observable<Post | null>;
+    post$!: Observable<Post | undefined>;
 
     constructor(private route: ActivatedRoute, private blogService: BlogService) {}
     ngOnInit() {
+        let id = this.route.snapshot.paramMap.get('post');
+        if(id !== null ){
+            this.post$ = this.blogService.getPost$(id);
+            //this.blogService.getPost$(id).subscribe(post => console.log(post))
+        } 
         // this.post$ = this.route.paramMap.pipe(
         //     switchMap((params: ParamMap) => this.blogService.getPost$(params.get('post') as string))
         // );
